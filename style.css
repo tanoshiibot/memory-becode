@@ -1,0 +1,38 @@
+h1 {
+    text-align: center;
+}
+
+
+
+#target{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+td {
+    border-style: solid;
+    border-radius: 2px;
+    padding: 1em;
+    font-size: x-large;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.revealed {
+    visibility : visible;
+}
+
+.catched {
+    visibility: visible;
+}
+
+.noclickhack{
+    z-index: 1;
+}
+
+.ok{
+    z-index: 0;
+}
