@@ -10,7 +10,7 @@
     let deck = [RAINBOW, RAINBOW, SAKURA, SAKURA, MUSHROOM, MUSHROOM, FOURLEAFCLOVER, FOURLEAFCLOVER, CAKE, CAKE, COOKIE, COOKIE, CACTUS, CACTUS, GRAPES, GRAPES];
     let score = 0;
 
-    function shuffleCards(cards) {
+    function shuffleCards() {
         let shuffledPile = [];
         let howManyCards = deck.length;
         for (let i = 0; i < howManyCards; i++) {
@@ -23,26 +23,35 @@
     }
 
     function clickCallback() {
-        console.log(event.target);
-        event.target.firstChild.setAttribute("class", "revealed");
+        let target = event.currentTarget;
+        target.firstChild.setAttribute("class", "revealed");
+        target.setAttribute("class", "noclick");
         setTimeout(() => {
             let ree = [...document.getElementsByClassName("revealed")];
             if ((ree.length > 1) && (ree[0].innerHTML == ree[1].innerHTML)) {
                     ree[0].setAttribute("class", "catched");
                     ree[1].setAttribute("class", "catched");
+                    console.log(document.getElementsByClassName("noclick"));
+                    document.getElementsByClassName("noclick")[0].removeEventListener("click", clickCallback);
+                    document.getElementsByClassName("noclick")[0].removeAttribute("class");
+                    document.getElementsByClassName("noclick")[0].removeEventListener("click", clickCallback);
+                    document.getElementsByClassName("noclick")[0].removeAttribute("class");
                     score++;
             } else if (ree.length > 1) {
                     ree[0].setAttribute("class", "hidden");
                     ree[1].setAttribute("class", "hidden");
+                    console.log(document.getElementsByClassName("noclick"));
+                    document.getElementsByClassName("noclick")[0].removeAttribute("class");
+                    document.getElementsByClassName("noclick")[0].removeAttribute("class");
             }
-            document.getElementById("target").setAttribute("class", "ok")
+            document.getElementById("target").setAttribute("class", "ok");
         }, 1000);
     }
 
 
 window.onload = () => {
 
-    let shuffledPile = shuffleCards(deck);
+    let shuffledPile = shuffleCards();
 
     //pas obligé de le montrer
     
