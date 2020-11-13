@@ -29,10 +29,8 @@ td {
     visibility: visible;
 }
 
-.noclickhack{
-    z-index: 1;
+
+h3{
+    text-align: center;
 }
 
-.ok{
-    z-index: 0;
-}

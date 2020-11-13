@@ -56,6 +56,10 @@ class Game {
             this.deck[index1].found();
             this.deck[index2].found();
             this.score++;
+            document.getElementById("score").innerText = "Score : " + this.score;
+            if (this.score === 8) {
+                document.getElementById("won").innerText = "You won !"
+            }
         } else {
             this.deck[index1].toggle();
             this.deck[index2].toggle();
@@ -95,6 +99,7 @@ function clickCallback(event) {
             setTimeout(() => {
                 let cardsToCompare = game.deck.filter((card) => card.isVisible && !card.isFound);
                 game.compare(cardsToCompare[0].id, cardsToCompare[1].id);
+
                 game.cardToggled = 0;
             }, 1000);
         }
