@@ -1,8 +1,8 @@
-h1 {
-    text-align: center;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
-
 
 #target{
     width: 100%;
@@ -20,17 +20,3 @@ td {
 .hidden {
     visibility: hidden;
 }
-
-.revealed {
-    visibility : visible;
-}
-
-.catched {
-    visibility: visible;
-}
-
-
-h3{
-    text-align: center;
-}
-

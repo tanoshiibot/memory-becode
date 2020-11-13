@@ -7,8 +7,8 @@ const COOKIE = "&#127850;";
 const CACTUS = "&#127797;";
 const GRAPES = "&#127815;";
 
-let startingDeck = [RAINBOW, RAINBOW, SAKURA, SAKURA, MUSHROOM, MUSHROOM, FOURLEAFCLOVER, FOURLEAFCLOVER, CAKE, CAKE, COOKIE, COOKIE, CACTUS, CACTUS, GRAPES, GRAPES];
-
+const startingDeck = [RAINBOW, RAINBOW, SAKURA, SAKURA, MUSHROOM, MUSHROOM, FOURLEAFCLOVER, FOURLEAFCLOVER, CAKE, CAKE, COOKIE, COOKIE, CACTUS, CACTUS, GRAPES, GRAPES];
+let game;
 
 class Card {
     constructor(card, id) {
@@ -39,7 +39,8 @@ class Game {
         this.cardToggled = 0;
     }
 
-    shuffleCards(deck) {
+    shuffleCards(startingDeck) {
+        let deck = [...startingDeck];
         let shuffledPile = [];
         let cardsNumber = deck.length;
         for (let i = 0; i < cardsNumber; i++) {
@@ -67,7 +68,12 @@ class Game {
     }
 }
 
-function gameInit(game) {
+function gameInit() {
+    game = new Game(startingDeck);
+    gameDisplay(game);
+}
+
+function gameDisplay(game) {
     let table = document.createElement("table");
 
     for (let i = 0; i < 4; i++) {
@@ -85,7 +91,11 @@ function gameInit(game) {
         table.appendChild(row);
     }
 
+    document.getElementById("target").innerHTML = "";
     document.getElementById("target").appendChild(table);
+
+    document.getElementById("score").innerText = "Score : " + game.score;
+    document.getElementById("won").innerText = "";
 }
 
 function clickCallback(event) {
@@ -106,8 +116,7 @@ function clickCallback(event) {
     }
 }
 
-let game = new Game(startingDeck);
 
 (() => {
-    gameInit(game);    
+    gameInit();    
 })();
