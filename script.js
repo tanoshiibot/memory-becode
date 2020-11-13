@@ -22,7 +22,7 @@
         return shuffledPile;
     }
 
-    function clickCallback() {
+    function clickCallback(event) {
         let target = event.currentTarget;
         target.firstChild.setAttribute("class", "revealed");
         target.setAttribute("class", "noclick");
@@ -31,7 +31,6 @@
             if ((ree.length > 1) && (ree[0].innerHTML == ree[1].innerHTML)) {
                     ree[0].setAttribute("class", "catched");
                     ree[1].setAttribute("class", "catched");
-                    console.log(document.getElementsByClassName("noclick"));
                     document.getElementsByClassName("noclick")[0].removeEventListener("click", clickCallback);
                     document.getElementsByClassName("noclick")[0].removeAttribute("class");
                     document.getElementsByClassName("noclick")[0].removeEventListener("click", clickCallback);
@@ -40,7 +39,6 @@
             } else if (ree.length > 1) {
                     ree[0].setAttribute("class", "hidden");
                     ree[1].setAttribute("class", "hidden");
-                    console.log(document.getElementsByClassName("noclick"));
                     document.getElementsByClassName("noclick")[0].removeAttribute("class");
                     document.getElementsByClassName("noclick")[0].removeAttribute("class");
             }
