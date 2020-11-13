@@ -1,5 +1,3 @@
-window.onload = () => {
-
     const RAINBOW = "&#127752;";
     const SAKURA = "&#127800;";
     const MUSHROOM = "&#127812;";
@@ -10,6 +8,7 @@ window.onload = () => {
     const GRAPES = "&#127815;";
 
     let deck = [RAINBOW, RAINBOW, SAKURA, SAKURA, MUSHROOM, MUSHROOM, FOURLEAFCLOVER, FOURLEAFCLOVER, CAKE, CAKE, COOKIE, COOKIE, CACTUS, CACTUS, GRAPES, GRAPES];
+    let score = 0;
 
     function shuffleCards(cards) {
         let shuffledPile = [];
@@ -23,15 +22,9 @@ window.onload = () => {
         return shuffledPile;
     }
 
-    let shuffledPile = shuffleCards(deck);
-
-    let score = 0;
-
-    //pas obligé de le montrer
-    
-    function clickCallback(cell) {
-        cell.setAttribute("class", "revealed");
-        document.getElementById("target").setAttribute("class", "noclickhack");
+    function clickCallback() {
+        console.log(event.target);
+        event.target.firstChild.setAttribute("class", "revealed");
         setTimeout(() => {
             let ree = [...document.getElementsByClassName("revealed")];
             if ((ree.length > 1) && (ree[0].innerHTML == ree[1].innerHTML)) {
@@ -46,16 +39,24 @@ window.onload = () => {
         }, 1000);
     }
 
+
+window.onload = () => {
+
+    let shuffledPile = shuffleCards(deck);
+
+    //pas obligé de le montrer
+    
+   
     let TABLE = document.createElement("TABLE");
 
     for (let i = 0; i < 4; i++) {
-        let row = document.createElement("TR")
+        let row = document.createElement("TR");
         for (let j = 0; j < 4; j++) {
             let column = document.createElement("TD");
             let cell = document.createElement("DIV");
             cell.setAttribute("class", "hidden");
             cell.innerHTML = shuffledPile[i * 4 + j];
-            column.addEventListener("click", clickCallback(cell))
+            column.addEventListener("click", clickCallback);
             column.appendChild(cell);
             row.appendChild(column);
         }    
