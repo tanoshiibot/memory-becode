@@ -25,9 +25,26 @@ window.onload = () => {
 
     let shuffledPile = shuffleCards(deck);
 
-
+    let score = 0;
 
     //pas obligé de le montrer
+    
+    function clickCallback(cell) {
+        cell.setAttribute("class", "revealed");
+        document.getElementById("target").setAttribute("class", "noclickhack");
+        setTimeout(() => {
+            let ree = [...document.getElementsByClassName("revealed")];
+            if ((ree.length > 1) && (ree[0].innerHTML == ree[1].innerHTML)) {
+                    ree[0].setAttribute("class", "catched");
+                    ree[1].setAttribute("class", "catched");
+                    score++;
+            } else if (ree.length > 1) {
+                    ree[0].setAttribute("class", "hidden");
+                    ree[1].setAttribute("class", "hidden");
+            }
+            document.getElementById("target").setAttribute("class", "ok")
+        }, 1000);
+    }
 
     let TABLE = document.createElement("TABLE");
 
@@ -38,22 +55,7 @@ window.onload = () => {
             let cell = document.createElement("DIV");
             cell.setAttribute("class", "hidden");
             cell.innerHTML = shuffledPile[i * 4 + j];
-            column.addEventListener("click", () => {
-                cell.setAttribute("class", "revealed");
-                document.getElementById("target").setAttribute("class", "noclickhack");
-                setTimeout(() => {
-                    let ree = [...document.getElementsByClassName("revealed")];
-                    console.log(ree);
-                    if ((ree.length > 1) && (ree[0].innerHTML == ree[1].innerHTML)) {
-                            ree[0].setAttribute("class", "catched");
-                            ree[1].setAttribute("class", "catched");
-                    } else if (ree.length > 1) {
-                            ree[0].setAttribute("class", "hidden");
-                            ree[1].setAttribute("class", "hidden");
-                    }
-                    document.getElementById("target").setAttribute("class", "ok")
-                }, 1000)
-            })
+            column.addEventListener("click", clickCallback(cell))
             column.appendChild(cell);
             row.appendChild(column);
         }    
