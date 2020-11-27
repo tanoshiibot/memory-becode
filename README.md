@@ -1,4 +1,4 @@
-# memory-becode
+# Memory !
 
 Memory présenté aux portes ouvertes de BeCode. Vous pouvez y accéder en cliquant [ici](https://tanoshiibot.github.io/memory-becode/)
 
